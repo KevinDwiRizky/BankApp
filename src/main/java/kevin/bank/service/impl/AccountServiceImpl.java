@@ -9,6 +9,9 @@ import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -66,5 +69,21 @@ public class AccountServiceImpl implements AccountService {
         account.setBalance(total);
         Account savedAccount = accountRepository.save(account);
         return AccountMapper.mapToAccountDTO(savedAccount);
+    }
+
+    @Override
+    public List<AccountDTO> getAllAccount() {
+        List<Account> accounts = accountRepository.findAll();
+        return  accounts.stream().map((account) -> AccountMapper.mapToAccountDTO(account))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteAccount(Long id) {
+        Account account = accountRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("Account does not exist!")
+        );
+
+        accountRepository.deleteById(id);
     }
 }

@@ -2,6 +2,8 @@ package kevin.bank.service;
 
 import kevin.bank.dto.AccountDTO;
 
+import java.util.List;
+
 public interface AccountService {
     AccountDTO createAccount(AccountDTO account);
 
@@ -10,4 +12,8 @@ public interface AccountService {
     AccountDTO deposit(Long id, Double amount);
 
     AccountDTO withDraw(Long id, Double amount);
+
+    List<AccountDTO> getAllAccount();
+
+    void deleteAccount(Long id);
 }
