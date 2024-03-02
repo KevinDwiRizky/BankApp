@@ -4,4 +4,6 @@ import kevin.bank.dto.AccountDTO;
 
 public interface AccountService {
     AccountDTO createAccount(AccountDTO account);
+
+    AccountDTO getAccountById(Long id);
 }
