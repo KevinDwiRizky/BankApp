@@ -8,4 +8,6 @@ public interface AccountService {
     AccountDTO getAccountById(Long id);
 
     AccountDTO deposit(Long id, Double amount);
+
+    AccountDTO withDraw(Long id, Double amount);
 }
